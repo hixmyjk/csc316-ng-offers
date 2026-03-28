@@ -589,7 +589,7 @@ window.addEventListener('resize', () => {
    ═══════════════════════════════════════════ */
 Promise.all([
   d3.json(HD_MAP_URL).catch(() => null),
-  d3.csv('ng_offers_ontario.csv').catch(() => FALLBACK)
+  d3.csv('data/ng_offers_ontario.csv').catch(() => FALLBACK)
 ]).then(([mapData, raw]) => {
   if (mapData && mapData.features) {
     const ontario = mapData.features.find(f => f.properties.name === 'Ontario');
