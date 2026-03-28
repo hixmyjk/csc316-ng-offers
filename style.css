@@ -90,3 +90,20 @@
   #sidebar > div:nth-child(4) { animation-delay: .3s; }
   #sidebar > div:nth-child(5) { animation-delay: .4s; }
   #loading { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'IM Fell English', serif; font-size: 1.2em; color: var(--ink-light); font-style: italic; }
+  
+  #credits {
+  position: absolute;
+  left: 16px;
+  bottom: 36px;
+  z-index: 20;
+  max-width: 320px;
+  padding: 8px 10px;
+  background: rgba(242, 234, 220, 0.92);
+  border: 1px solid rgba(160,128,96,.35);
+  border-radius: 4px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.75em;
+  line-height: 1.25;
+  color: #5c3820;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
