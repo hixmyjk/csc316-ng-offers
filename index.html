@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NG Offers Landscape — Ontario</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app" class="sidebar-hidden">
+  <div id="header">
+    <h1>NG Offers Landscape</h1>
+    <div class="subtitle">New-grad tech offers across Ontario — column height encodes offer volume, colour encodes months from Sept recruiting season to offer</div>
+  </div>
+  <div id="map-panel">
+    <canvas id="three-canvas"></canvas>
+    <div id="loading">Loading data…</div>
+    <div class="zoom-hint">drag to pan · right-drag to rotate · scroll to zoom · hover for details</div>
+    <button id="play-btn">
+      <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+      <span>Replay</span>
+    </button>
+    <button id="toggle-btn">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <span>Show Controls</span>
+    </button>
+  </div>
+  <div id="sidebar">
+    <div>
+      <div class="panel-title">Summary</div>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-num" id="stat-cities">—</div><div class="stat-label">cities shown</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-offers">—</div><div class="stat-label">total offers</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-wait">—</div><div class="stat-label">avg months to offer</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="panel-title">Filter by Months to Offer</div>
+      <label class="filter-label">Max months from Sept to offer</label>
+      <input type="range" id="wait-slider" min="0" max="18" step="0.5" value="18">
+      <div class="range-labels"><span>0 (Sept)</span><span>18 (Mar+1)</span></div>
+      <div class="range-value">Showing: ≤ <strong id="wait-val">18.0</strong> months from Sept</div>
+    </div>
+    <div>
+      <div class="panel-title">Internship Filter</div>
+      <div class="check-group">
+        <label class="check-item"><input type="checkbox" id="chk-intern-high" checked> High internship rate (≥ 50%)</label>
+        <label class="check-item"><input type="checkbox" id="chk-intern-low" checked> Low internship rate (&lt; 50%)</label>
+      </div>
+    </div>
+    <div>
+      <div class="panel-title">Region</div>
+      <div class="region-btns">
+        <button class="region-btn active" data-region="all">All</button>
+        <button class="region-btn" data-region="GTA">GTA</button>
+        <button class="region-btn" data-region="KW">KW Corridor</button>
+        <button class="region-btn" data-region="Ottawa">Ottawa</button>
+        <button class="region-btn" data-region="Other South">Other South</button>
+        <button class="region-btn" data-region="North">North</button>
+      </div>
+    </div>
+    <div>
+      <div class="panel-title">Top Cities by Offers</div>
+      <svg id="bar-chart-svg"></svg>
+    </div>
+    <div>
+      <div class="panel-title">Legend</div>
+      <label class="filter-label">Column colour → months since Sept recruiting season</label>
+      <div class="legend-bar"></div>
+      <div class="legend-labels"><span>0 mo (Sept)</span><span>18 mo (Mar+1yr)</span></div>
+      <label class="filter-label" style="margin-top:10px">Column height → number of offers</label>
+      <div class="legend-dots">
+        <div class="legend-dot"><span style="background:#e8b030"></span> Intern ≥50%</div>
+        <div class="legend-dot"><span style="background:#cc3018"></span> Intern &lt;50%</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="tooltip">
+  <div class="tip-name" id="tip-name"></div>
+  <div class="tip-row"><span>Offers</span><span id="tip-offers"></span></div>
+  <div class="tip-row"><span>Months to offer</span><span id="tip-wait"></span></div>
+  <div class="tip-row"><span>Internship %</span><span id="tip-intern"></span></div>
+  <div class="tip-row"><span>Region</span><span id="tip-region"></span></div>
+  <div class="tip-bar"><div class="tip-bar-fill" id="tip-bar"></div></div>
+</div>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
